@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="SOAL1UASS"/>
+        <attribute name="authors" value="MSI CYBORG"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-12-17 04:31:07 PM"/>
+        <attribute name="created" value="TVNJIENZQk9SRztNU0k7MjAyNS0xMi0xNzswODo0OTo0OCBBTTsyMjM0"/>
+        <attribute name="edited" value="TVNJIENZQk9SRztNU0k7MjAyNS0xMi0xNzswNDozMTowNyBQTTszOzIzNDE="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="n, i, rating" type="Integer" array="False" size=""/>
+            <declare name="total, max, min, count" type="Integer" array="False" size=""/>
+            <declare name="rata" type="Real" array="False" size=""/>
+            <declare name="daftar" type="String" array="False" size=""/>
+            <input variable="n"/>
+            <assign variable="total" expression="0"/>
+            <assign variable="count" expression="0"/>
+            <assign variable="daftar" expression="&quot;&quot;"/>
+            <for variable="i" start="1" end="n" direction="inc" step="1">
+                <input variable="rating"/>
+                <if expression="rating&gt;4 &amp;&amp; rating&lt;=0">
+                    <then/>
+                    <else>
+                        <output expression="&quot;INVALID, ulangi pliss&quot;" newline="True"/>
+                        <input variable="rating"/>
+                    </else>
+                </if>
+                <if expression="i==1">
+                    <then>
+                        <assign variable="max" expression="rating"/>
+                        <assign variable="min" expression="rating"/>
+                    </then>
+                    <else/>
+                </if>
+                <assign variable="total" expression="total+rating"/>
+                <if expression="rating&gt;=4">
+                    <then>
+                        <assign variable="count" expression="count+1"/>
+                    </then>
+                    <else/>
+                </if>
+                <if expression="rating&gt;max">
+                    <then>
+                        <assign variable="max" expression="rating"/>
+                    </then>
+                    <else/>
+                </if>
+                <if expression="rating&lt;min">
+                    <then>
+                        <assign variable="min" expression="rating"/>
+                    </then>
+                    <else/>
+                </if>
+                <assign variable="daftar" expression="daftar &amp;rating &amp;&quot;&quot;"/>
+            </for>
+            <assign variable="rata" expression="HitungRata(total, n)"/>
+            <output expression="&quot;Daftar rating:&quot; &amp;daftar" newline="True"/>
+            <output expression="&quot;Rata rata:&quot; &amp;Tofixed(rata,2)" newline="True"/>
+            <output expression="&quot;Tertinggi:&quot; &amp;max" newline="True"/>
+            <output expression="&quot;Terendah:&quot; &amp;min" newline="True"/>
+            <output expression="&quot;Reviewer ratinig &gt;=4:&quot; &amp;count &amp;&quot;orang&quot;" newline="True"/>
+            <call expression="CekKondisi(rata)"/>
+        </body>
+    </function>
+    <function name="CekKondisi" type="None" variable="">
+        <parameters>
+            <parameter name="rata" type="Real" array="False"/>
+        </parameters>
+        <body>
+            <if expression="rata&gt;=4">
+                <then>
+                    <output expression="&quot;Kondisi sangat baik.&quot;" newline="True"/>
+                </then>
+                <else>
+                    <if expression="rata&gt;=3">
+                        <then>
+                            <output expression="&quot;Kondisi cukup, masih perlu peningkatan.&quot;" newline="True"/>
+                        </then>
+                        <else>
+                            <output expression="&quot;Kondisi buruk.&quot;" newline="True"/>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+    <function name="HitungRata" type="Real" variable="rata">
+        <parameters>
+            <parameter name="total" type="Integer" array="False"/>
+            <parameter name="n" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="rata" type="Real" array="False" size=""/>
+            <assign variable="rata" expression="total/n"/>
+        </body>
+    </function>
+</flowgorithm>

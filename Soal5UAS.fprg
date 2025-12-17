@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Soal5UAS"/>
+        <attribute name="authors" value="MSI CYBORG"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-12-17 03:00:25 PM"/>
+        <attribute name="created" value="TVNJIENZQk9SRztNU0k7MjAyNS0xMi0xNzswMjo0MTo1MCBQTTsyMjI4"/>
+        <attribute name="edited" value="TVNJIENZQk9SRztNU0k7MjAyNS0xMi0xNzswMzowMDoyNSBQTTsxOzIzMzQ="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="n, i, totallolos, tanggungan" type="Integer" array="False" size=""/>
+            <declare name="status" type="String" array="False" size=""/>
+            <assign variable="totallolos" expression="0"/>
+            <input variable="n"/>
+            <declare name="nama" type="String" array="True" size="n"/>
+            <declare name="ipk" type="Real" array="True" size="n"/>
+            <declare name="gaji" type="Integer" array="True" size="n"/>
+            <for variable="i" start="0" end="n-1" direction="inc" step="1">
+                <input variable="nama[i]"/>
+                <input variable="ipk[i]"/>
+                <input variable="gaji[i]"/>
+                <input variable="tanggungan"/>
+            </for>
+            <output expression="&quot;&quot;" newline="True"/>
+            <for variable="i" start="0" end="n-1" direction="inc" step="1">
+                <assign variable="status" expression="cekkelulusan(ipk[i],gaji[i])"/>
+                <output expression="nama[i] &amp;&quot;-&gt;&quot; &amp;status" newline="True"/>
+                <if expression="status==&quot;Lolos syarat awal&quot;">
+                    <then>
+                        <assign variable="totallolos" expression="totallolos+1"/>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+            <output expression="&quot;&quot;" newline="True"/>
+            <output expression="&quot;Total lolos:&quot; &amp;totallolos" newline="True"/>
+        </body>
+    </function>
+    <function name="CekKelulusan" type="String" variable="hasil">
+        <parameters>
+            <parameter name="ipk" type="Real" array="False"/>
+            <parameter name="gaji" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="hasil" type="String" array="False" size=""/>
+            <if expression="ipk&gt;=3.0 &amp;&amp;gaji&lt;=3000000">
+                <then>
+                    <assign variable="hasil" expression="&quot;Lolos syarat awal&quot;"/>
+                </then>
+                <else>
+                    <assign variable="hasil" expression="&quot;Tidak Lolos&quot;"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>

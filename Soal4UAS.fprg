@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Soal4UAS"/>
+        <attribute name="authors" value="MSI CYBORG"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-12-17 02:41:37 PM"/>
+        <attribute name="created" value="TVNJIENZQk9SRztNU0k7MjAyNS0xMi0xNzswMjoxMTowNyBQTTsyMjI3"/>
+        <attribute name="edited" value="TVNJIENZQk9SRztNU0k7MjAyNS0xMi0xNzswMjo0MTozNyBQTTsxOzIzNDE="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="n, i, totalShift, Maxshift, Minshift" type="Integer" array="False" size=""/>
+            <declare name="ratarata" type="Real" array="False" size=""/>
+            <declare name="Maxnama, Minnama, Kesimpulan" type="String" array="False" size=""/>
+            <assign variable="totalShift" expression="0"/>
+            <assign variable="MaxShift" expression="-1"/>
+            <assign variable="MinShift" expression="1000"/>
+            <input variable="n"/>
+            <declare name="ShiftArr" type="Integer" array="False" size=""/>
+            <declare name="Nama" type="String" array="True" size="n"/>
+            <declare name="Shift" type="Integer" array="True" size="n"/>
+            <for variable="i" start="0" end="n-1" direction="inc" step="1">
+                <input variable="nama[i]"/>
+                <input variable="shift[i]"/>
+            </for>
+            <for variable="i" start="0" end="n-1" direction="inc" step="1">
+                <assign variable="totalShift" expression="totalShift+Shift[i]"/>
+                <if expression="Shift[i]&gt;MaxShift">
+                    <then>
+                        <assign variable="MaxShift" expression="Shift[i]"/>
+                        <assign variable="Maxnama" expression="Nama[i]"/>
+                    </then>
+                    <else/>
+                </if>
+                <if expression="Shift[i]&lt;MinShift">
+                    <then>
+                        <assign variable="MinShift" expression="Shift[i]"/>
+                        <assign variable="MinNama" expression="Nama[i]"/>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+            <assign variable="ratarata" expression="totalShift/n"/>
+            <output expression="&quot;Daftar Shift:&quot;" newline="True"/>
+            <for variable="i" start="0" end="n-1" direction="inc" step="1">
+                <output expression="nama[i] &amp;&quot;=&gt;&quot; &amp;Shift[i]" newline="True"/>
+            </for>
+            <output expression="&quot;&quot;" newline="True"/>
+            <output expression="&quot;Total Shift=&quot; &amp;TotalShift" newline="True"/>
+            <output expression="&quot;Rata-rata=&quot; &amp;ratarata" newline="True"/>
+            <output expression="&quot;Shift terbanyak=&quot; &amp;MaxNama &amp;&quot;(&quot; &amp;MinShift &amp;&quot;)&quot;" newline="True"/>
+            <output expression="&quot;Shift tersedikit:&quot; &amp;MinNama &amp;&quot;(&quot; &amp;MinShift &amp;&quot;)&quot;" newline="True"/>
+            <output expression="&quot;&quot;" newline="True"/>
+            <assign variable="Kesimpulan" expression="CekKesimpulan(MaxShift,MinShift)"/>
+            <output expression="Kesimpulan" newline="True"/>
+        </body>
+    </function>
+    <function name="CekKesimpulan" type="String" variable="pesan">
+        <parameters>
+            <parameter name="MaxVal" type="Integer" array="False"/>
+            <parameter name="MinVal" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="pesan" type="String" array="False" size=""/>
+            <declare name="selisih" type="Integer" array="False" size=""/>
+            <assign variable="selisih" expression="MaxVal-MinVal"/>
+            <if expression="selisih&gt;=3">
+                <then>
+                    <assign variable="pesan" expression="&quot;Distribusi shift tidak merata, beberapa asisten terbebani.&quot;"/>
+                </then>
+                <else>
+                    <assign variable="pesan" expression="&quot;Distribusi shift cukup merata&quot;"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
